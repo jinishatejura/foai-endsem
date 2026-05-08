@@ -2,8 +2,9 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { calculateSpeed } from '../utils/haversine';
 import { reverseGeocode } from '../utils/geocode';
 
-const ISS_API = 'http://api.open-notify.org/iss-now.json';
-const ASTROS_API = 'http://api.open-notify.org/astros.json';
+const isDev = window.location.hostname === 'localhost';
+const ISS_API = isDev ? 'http://api.open-notify.org/iss-now.json' : '/api/iss';
+const ASTROS_API = isDev ? 'http://api.open-notify.org/astros.json' : '/api/astros';
 const MAX_POSITIONS = 15;
 const MAX_SPEEDS = 30;
 const POLL_INTERVAL = 15000; // 15 seconds
